@@ -1,4 +1,5 @@
 return {
+
   "catppuccin/nvim",
   name = "catppuccin",
   priority = 1000,
@@ -15,6 +16,37 @@ return {
         telescope = true,
         notify = true,
         mini = true,
+        --from lazyvim
+        aerial = true,
+        alpha = true,
+        dashboard = true,
+        flash = true,
+        fzf = true,
+        grug_far = true,
+        headlines = true,
+        illuminate = true,
+        indent_blankline = { enabled = true },
+        leap = true,
+        mason = true,
+        navic = { enabled = true, custom_bg = "lualine" },
+        neotest = true,
+        neotree = true,
+        noice = true,
+        snacks = true,
+        telescope = true,
+        treesitter_context = true,
+        which_key = true,
+      },
+      specs = {
+       {
+        "akinsho/bufferline.nvim",
+        optional = true,
+        opts = function(_, opts)
+          if (vim.g.colors_name or ""):find("catppuccin") then
+            opts.highlights = require("catppuccin.special.bufferline").get_theme()
+          end
+        end,
+        },
       },
     })
 
@@ -42,7 +74,7 @@ return {
 
 
   end,
-}
 
+}
 
 
