@@ -129,6 +129,9 @@ return {
 
 					map("gri", require("telescope.builtin").lsp_implementations, "[G]oto [I]mplementation")
 
+					-- add hover documentation
+					map("K", vim.lsp.buf.hover, "Hover Documentation")
+
 					map("grd", require("telescope.builtin").lsp_definitions, "[G]oto [D]efinition")
 
 					map("grD", vim.lsp.buf.declaration, "[G]oto [D]eclaration")
@@ -222,6 +225,19 @@ return {
 					end,
 				},
 			})
+
+			vim.o.updatetime = 250
+
+			vim.api.nvim_create_autocmd("CursorHold", {
+  				callback = function()
+    				vim.diagnostic.open_float(nil, {
+      					focus = false,
+      					scope = "cursor",
+				    	border = "rounded",
+    				})
+  				end,
+			})
+
 
 			local capabilities = require("blink.cmp").get_lsp_capabilities()
 
